@@ -71,9 +71,6 @@ def main():
 		logging.info("Creating directory %s..." % args.out_path)
 		os.makedirs(args.out_path)
 
-	# Strips any numbers appearing in a text.
-	strip_numbers = lambda text : re.sub(r'\d+', "", text)
-
 	# Drops the extension in a filename.
 	drop_ext = lambda fname : '.'.join(fname.split('.')[:-1])
 
@@ -84,7 +81,7 @@ def main():
 		# Retrieve the Open Mary XML translation, stripping any numbers
 		# beforehand.
 		with open(in_fpath) as fin:
-			text = strip_numbers(fin.read())
+			text = fin.read()
 			translation_xml = omc.translate(text, args.locale).encode('utf-8')
 
 		logging.info("Done! Saving translation to %s..." % out_fpath)
