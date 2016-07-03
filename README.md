@@ -1,6 +1,6 @@
 # open-mary-python
 
-A simple Python runner for doing phoneme translation with the Open Mary online API
+A simple Python runner for doing phoneme translation with the Open Mary online API.
 
 ## Usage
 
@@ -27,3 +27,19 @@ optional arguments:
   -x EXT, --ext EXT     file extension for output files (only applicable to
                         directories)
 ```
+
+For example,
+
+```
+python translate.py my_file.ext my_file.xml fr -f xml
+```
+
+will translate the file `my_file.ext` under the French locale and save the translation in Open Mary's XML format to  `my_file.xml`.
+
+As another example,
+
+```
+python translate.py /path/to/my/input/dir/ /path/to/my/outout/dir/ de -d -i 5 -f txt -x .translation
+```
+
+will translate each (non-hidden) file `my_file.ext` in the directory `/path/to/my/input/dir/` to a text file in `/path/to/my/output/dir/my_file.translation` (since directory mode is initiated with `-d`) with the tokens replaced by their phonetic translation (under the German locale in this case), with each phoneme separated by a space (since `txt` is the specified format). The file is also tokenized according to tokens (separated by a single space so word boundaries are lost), sentences (separated by a single CR), and paragraphs (seperated by a double CR). `-i 5` specifies a timeout of 5 seconds in-between file translations in order to prevent overloading the Mary TTS server.
