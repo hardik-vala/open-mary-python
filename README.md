@@ -43,3 +43,9 @@ python translate.py /path/to/my/input/dir/ /path/to/my/outout/dir/ de -d -i 5 -f
 ```
 
 will translate each (non-hidden) file `my_file.ext` in the directory `/path/to/my/input/dir/` to a text file in `/path/to/my/output/dir/my_file.translation` (since directory mode is initiated with `-d`) with the tokens replaced by their phonetic translation (under the German locale in this case), with each phoneme separated by a space (since `txt` is the specified format). The file is also tokenized according to tokens (separated by a single space so word boundaries are lost), sentences (separated by a single CR), and paragraphs (seperated by a double CR). `-i 5` specifies a timeout of 5 seconds in-between file translations in order to prevent overloading the Mary TTS server.
+
+## Documentation
+
+* [Open Mary's XML format](http://mary.dfki.de/documentation/maryxml/index.html)
+* [Open Mary publications](http://mary.dfki.de/documentation/publications/index.html)
+* [Open Mary](http://mary.dfki.de/) in general
