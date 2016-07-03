@@ -1,5 +1,5 @@
 """
-Module facilitates translating texts into phonemes using Open Mary.
+Module facilitates translating texts into phonemes using Open Mary's online API.
 
 @author: Hardik
 """
@@ -50,6 +50,9 @@ class OpenMaryClient():
 		"""
 		Translates raw text in a specified locale to phonemes by posting to
 		the Mary TTS server. The response is directly returned.
+
+		(Repeated calls to this method should be interweaved with timeouts in
+		order to prevent overloading of the Mary TTS server.)
 
 		@param text - Raw text to translate.
 		@param locale - Locale of raw text.
