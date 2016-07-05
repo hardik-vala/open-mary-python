@@ -14,7 +14,8 @@ positional arguments:
   in_path               path to input
   out_path              path to output
   locale                target locale ('en_US' - (US) English, 'fr' - French,
-                        or 'de' - German)
+                        'de' - German, 'it' - Italian, 'ru' - Russian, 'sv' -
+                        Swedish, 'te' - Telugu, or 'tu' - Turkish)
 
 optional arguments:
   -h, --help            show this help message and exit

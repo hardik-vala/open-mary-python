@@ -25,8 +25,9 @@ def main():
 	parser.add_argument('in_path', help="path to input")
 	parser.add_argument('out_path', help="path to output")
 	
-	arg_help = ("target locale ('en_US' - (US) English, 'fr' - French, or "
-		"'de' - German)")
+	arg_help = ("target locale ('en_US' - (US) English, 'fr' - French, 'de' - "
+		"German, 'it' - Italian, 'ru' - Russian, 'sv' - Swedish, 'te' - "
+		"Telugu, or 'tu' - Turkish)")
 	parser.add_argument('locale', help=arg_help)
 
 	parser.add_argument('-d', '--dir', action='store_true',

@@ -29,6 +29,16 @@ class OpenMaryClient():
 	FR_LOCALE = "fr"
 	# German locale.
 	GERM_LOCALE = "de"
+	# Italian locale.
+	IT_LOCALE = "it"
+	# Russian locale.
+	RU_LOCALE = "ru"
+	# Swedish locale.
+	SV_LOCALE = "sv"
+	# Telugu locale.
+	TE_LOCALE = "te"
+	# Turkish locale.
+	TU_LOCALE = "tr"
 
 	def __init__(self):
 		pass
