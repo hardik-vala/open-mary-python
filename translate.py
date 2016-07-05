@@ -94,7 +94,7 @@ def main():
 		elif args.format == 'txt':
 			pro_text = omxp.parse_string_to_text(translation_xml)
 			with open(out_fpath, 'w') as fout:
-				fout.write(pro_text)
+				fout.write(pro_text.encode('utf-8'))
 
 	# Run in directory mode, where input and output paths given correspond to
 	# directories.
