@@ -7,6 +7,7 @@ Module facilitates translating texts into phonemes using Open Mary's online API.
 import requests, urllib
 
 from xml.dom import minidom
+from xml.parsers.expat import ExpatError
 
 
 class OpenMaryClient():
@@ -66,6 +67,8 @@ class OpenMaryClient():
 
 		@param text - Raw text to translate.
 		@param locale - Locale of raw text.
+		@raises requests.exceptions.HTTPError if the Mary TTS server responds
+			with an error.
 		@return XML response from the Mary TTS server as a string.
 		"""
 
@@ -76,10 +79,30 @@ class OpenMaryClient():
 			"LOCALE": locale
 		})
 
-		r = requests.post(OpenMaryClient.URL, data,
+		r = requests.get(OpenMaryClient.URL, data,
 			headers=OpenMaryClient.HEADERS)
 
-		return r.text
+		# We good.
+		if r.status_code == requests.codes.ok:
+			return r.text
+		# Internal server error.
+		elif r.status_code == 500:
+			try:
+				dom = minidom.parseString(r.text)
+			# Usually a missing closing p tag.
+			except ExpatError as e:
+				dom = minidom.parseString(r.text.replace('<pre>', '</p><pre>'))
+
+			try:
+				r.raise_for_status()
+			except requests.exceptions.HTTPError as e:
+				pre_tags = dom.getElementsByTagName('pre')
+				server_exception_msg = pre_tags[0].firstChild.data.strip()
+
+				raise requests.exceptions.HTTPError("%s\nServer Exception: %s" %
+					(str(e), server_exception_msg))
+		else:			
+			r.raise_for_status()
 
 
 class OpenMaryXMLParser():
