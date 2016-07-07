@@ -1,5 +1,5 @@
 """
-Translates text files using the Open Mary online API.
+Performs phoneme translations of text files using the Open Mary online API.
 
 @author: Hardik
 """
@@ -19,7 +19,8 @@ logging.basicConfig(format=log_format, level=logging.INFO)
 
 
 def main():
-	parser_description = ("")
+	parser_description = ("Performs phoneme translations of text files using "
+		"the Open Mary online API.")
 	parser = argparse.ArgumentParser(description=parser_description)
 
 	parser.add_argument('in_path', help="path to input")
@@ -79,8 +80,7 @@ def main():
 	def translate_file(in_fpath, out_fpath):
 		logging.info("Translating %s..." % in_fpath)
 
-		# Retrieve the Open Mary XML translation, stripping any numbers
-		# beforehand.
+		# Retrieve the Open Mary XML translation.
 		with open(in_fpath) as fin:
 			text = fin.read()
 			translation_xml = omc.translate(text, args.locale).encode('utf-8')
